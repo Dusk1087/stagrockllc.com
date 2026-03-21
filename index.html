@@ -202,6 +202,10 @@
             position: relative; z-index: 2; text-align: center;
             max-width: 700px; padding: 0 var(--space-md);
         }
+        .hero__logo {
+            display: block; width: auto; height: 120px; margin: 0 auto var(--space-md);
+            animation: fadeIn 1s ease 0.1s both;
+        }
         .hero__content h1 { color: var(--color-bg); margin-bottom: var(--space-md); animation: fadeUp 1s ease 0.3s both; }
         .hero__rule {
             width: 80px; height: 1px; background: var(--color-accent);
@@ -366,6 +370,7 @@
         <div class="hero__bg"></div>
         <div class="hero__pattern"></div>
         <div class="hero__content">
+            <img src="logo-white.png" alt="Stag Rock" class="hero__logo">
             <h1>Stag Rock</h1>
             <div class="hero__rule"></div>
             <p class="hero__tagline">
