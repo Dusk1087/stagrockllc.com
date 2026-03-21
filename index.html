@@ -6,7 +6,9 @@
     <title>Stag Rock LLC | Investment Management</title>
     <meta name="description" content="Stag Rock LLC is a registered investment advisory firm based in Virginia Beach, Virginia, managing individual bond ladders and equity portfolios for each client household.">
     <link rel="canonical" href="https://stagrockllc.com/">
-    <link rel="icon" type="image/png" href="logo-grey.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
     <!-- Open Graph / Social -->
     <meta property="og:type" content="website">
@@ -86,6 +88,28 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
 
+        /* ─── Tabs ─── */
+        .tabs { margin-top: var(--space-md); }
+        .tabs__nav {
+            display: flex; gap: 0; border-bottom: 1px solid var(--color-rule);
+            margin-bottom: var(--space-md);
+        }
+        .tabs__btn {
+            background: none; border: none; cursor: pointer;
+            font-family: var(--font-display); font-size: 1.2rem; font-weight: 500;
+            color: var(--color-text-muted); padding: var(--space-sm) var(--space-md);
+            position: relative; transition: color 0.3s ease;
+            letter-spacing: 0.01em;
+        }
+        .tabs__btn:hover { color: var(--color-text); }
+        .tabs__btn.active { color: var(--color-text); }
+        .tabs__btn.active::after {
+            content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+            height: 2px; background: var(--color-accent);
+        }
+        .tabs__panel { display: none; }
+        .tabs__panel.active { display: block; }
+
         /* ─── Accordion ─── */
         .accordion { border-top: 1px solid var(--color-rule); margin-top: var(--space-md); }
         .accordion__item { border-bottom: 1px solid var(--color-rule); }
@@ -116,7 +140,7 @@
             max-height: 0; overflow: hidden;
             transition: max-height 0.5s ease;
         }
-        .accordion__item.open .accordion__body { max-height: 600px; }
+        .accordion__item.open .accordion__body { max-height: 2000px; }
 
         .accordion__content { padding-bottom: var(--space-md); }
         .accordion__content p { font-size: 0.95rem; margin-bottom: var(--space-sm); }
@@ -166,11 +190,11 @@
             color: var(--color-text); letter-spacing: 0.12em; text-transform: uppercase;
             display: flex; align-items: center; gap: 0.5rem; position: relative;
         }
-        .nav__logo-img { height: 28px; width: auto; transition: opacity 0.4s ease; }
-        .nav__logo-img--white { opacity: 1; }
-        .nav__logo-img--dark { opacity: 0; position: absolute; left: 0; }
-        .nav.scrolled .nav__logo-img--white { opacity: 0; }
-        .nav.scrolled .nav__logo-img--dark { opacity: 1; }
+        .nav__logo-img { height: 28px; width: auto; transition: opacity 0.4s ease, visibility 0.4s ease; }
+        .nav__logo-img--white { opacity: 1; visibility: visible; }
+        .nav__logo-img--dark { opacity: 0; visibility: hidden; position: absolute; left: 0; }
+        .nav.scrolled .nav__logo-img--white { opacity: 0; visibility: hidden; }
+        .nav.scrolled .nav__logo-img--dark { opacity: 1; visibility: visible; }
         .nav__logo span { font-weight: 300; color: var(--color-accent); }
 
         .nav__links { display: flex; gap: var(--space-md); list-style: none; }
@@ -367,7 +391,7 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav__inner">
-            <a href="#" class="nav__logo"><img src="logo-white.png" alt="Stag Rock" class="nav__logo-img nav__logo-img--white"><img src="logo-grey.png" alt="Stag Rock" class="nav__logo-img nav__logo-img--dark">Stag Rock</a>
+            <a href="#" class="nav__logo"><img src="logo-white.png" alt="Stag Rock" class="nav__logo-img nav__logo-img--white"><img src="logo-grey.png" alt="" class="nav__logo-img nav__logo-img--dark">Stag Rock</a>
             <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </button>
@@ -406,35 +430,145 @@
 
             <div class="reveal" style="margin-bottom: var(--space-sm);">
                 <p>
-                    Stag Rock was built around one question: does the price make sense?  We apply that discipline across fixed income and equities, using the tools and frameworks appropriate to each.
+                    Every investment decision at Stag Rock starts with valuation.  On the fixed income side, that means navigating a fragmented and often opaque bond market to find individual securities worth holding for each client.  On the equity side, it means combining a quantitative model that reads market signals with fundamental analysis that tests whether the price is justified.  The tools are different, but the discipline is the same: understand what something is worth, then act accordingly.
                 </p>
             </div>
 
-            <div class="accordion reveal">
-                <div class="accordion__item">
-                    <button class="accordion__trigger" aria-expanded="false">
-                        Fixed Income
-                        <span class="accordion__icon"></span>
-                    </button>
-                    <div class="accordion__body">
-                        <div class="accordion__content">
-                            <p>The bond market is not like the stock market.  It is fragmented, diverse, and often opaque.  Many bonds don't trade on the open market.  You're not just buying a company, you're buying into a credit stack where seniority of claims matters.  Filtering that universe down to the bonds worth holding is the core of our fixed income process.</p>
-                            <p>We use a quantitative model to work through the layers of that market systematically, identifying securities that meet the credit quality, maturity, and structural characteristics that make sense in a client portfolio.  Credit risk assessment goes beyond the rating agencies, whose limitations were made clear in the global financial crisis.  We supplement traditional ratings with Bloomberg's proprietary default probability model, which evaluates the financial characteristics of each issuer against a deep history of actual defaults to produce a more granular view of credit risk.</p>
-                            <p>The goal is an individual bond ladder where, assuming no default, you know what you're getting from the day you buy it regardless of what happens with rates.  You hold to maturity and collect what you were promised.</p>
+            <div class="tabs reveal">
+                <div class="tabs__nav">
+                    <button class="tabs__btn active" data-tab="fi">Fixed Income</button>
+                    <button class="tabs__btn" data-tab="eq">Equities</button>
+                </div>
+
+                <!-- Fixed Income Panel -->
+                <div class="tabs__panel active" id="tab-fi">
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                What is a Bond
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>To understand a bond, start with how a business is valued.  The total value of a business, its enterprise value, is its debt plus its equity minus its cash.  It works the same way as a home: your house is worth the equity you own plus the mortgage you owe.  A business is no different.  One side of that value belongs to the equity holders, the owners.  The other side belongs to the lenders, the people who loaned the business money.</p>
+                                    <p>Companies borrow money because debt is generally cheaper than issuing stock.  But that lower cost comes with strings attached.  Debt often carries covenants, restrictions on what the business can and cannot do, designed to protect the lenders.  It also comes with a priority structure: if something goes wrong, who gets paid first, who gets paid last, and who gets nothing.  Bank lenders typically sit at the top of that stack.  Equity holders sit at the bottom.  Bondholders sit in between, typically in the subordinated structure, below the banks but above the owners.</p>
+                                    <p>When you buy a bond, you are buying into that side of the capitalization table.  You are lending money to a business in exchange for a contractual promise: a series of interest payments on a set schedule and the return of your principal at maturity.  Unlike a stock, there is no story to forecast, no earnings surprise to anticipate, no market sentiment to interpret.  It is a contract.  Understanding where you sit in the capital structure, who has a claim ahead of you, what protections are in place, and what the business looks like financially, is fundamental to evaluating whether that contract is worth holding.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Fixed Income Market
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The bond market has been called the wild west, and there is truth to that.  Unlike the stock market, where a company typically has one class of common stock trading on a centralized exchange with real-time pricing, a single company might have dozens of outstanding bond issues, each with different maturities, coupon rates, seniority levels, and covenant packages.  Many of these bonds don't trade on an open exchange at all.  Pricing is often opaque, liquidity varies widely, and the information asymmetry between institutional and individual investors is significant.</p>
+                                    <p>This makes the fixed income market fundamentally harder to navigate than equities.  You can pull up a stock quote in seconds and see every trade that happened today.  With bonds, you may be looking at a security that last traded weeks ago, with a price that was negotiated between two parties over the phone.  The universe is enormous: government debt, investment-grade corporate bonds, high-yield issuers, municipal securities, each with their own structural nuances.  Sorting through that universe to find the bonds that actually belong in a client portfolio requires a systematic process, not a manual search.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                What We Hold
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>Client bond ladders draw from three primary segments of the fixed income market, each serving a different role in the portfolio.</p>
+                                    <p>Government securities, including U.S. Treasuries and agency bonds, form the most conservative layer.  These carry the full faith and credit of the U.S. government or its agencies and are the closest thing to a risk-free asset that exists.  They provide a baseline of safety and liquidity in every portfolio and serve as the benchmark against which all other fixed income is measured.</p>
+                                    <p>Municipal bonds are issued by state and local governments to fund public projects.  The interest income on most municipal bonds is exempt from federal income tax, and in many cases from state and local taxes as well.  For clients in higher tax brackets, municipals can deliver a higher after-tax yield than a comparably rated corporate bond.  The tax treatment makes them particularly valuable in taxable accounts where every basis point of yield retained matters.</p>
+                                    <p>Investment-grade corporate bonds are issued by publicly traded and privately held companies to fund operations, acquisitions, or refinance existing debt.  They offer higher yields than government securities in exchange for taking on the credit risk of the issuing company.  This is where the capital structure analysis matters most: understanding the company's financial health, where the bond sits in the priority of claims, and whether the yield adequately compensates for the risk.</p>
+                                    <p>The mix of government, municipal, and corporate bonds in each client's ladder depends on their tax situation, income needs, risk tolerance, and time horizon.  There is no default allocation.  Every ladder is built for the household it serves.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Research Process
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>We use a quantitative model to work through the layers of that market systematically, identifying securities that meet the credit quality, maturity, and structural characteristics that make sense in a client portfolio.  The model filters a vast and fragmented universe down to the securities worth evaluating, saving the manual effort of sorting through thousands of issues that don't meet the criteria.</p>
+                                    <p>Credit risk assessment goes beyond the rating agencies, whose limitations were made clear in the global financial crisis.  We supplement traditional ratings with Bloomberg's proprietary default probability model, which evaluates the financial characteristics of each issuer against a deep history of actual defaults to produce a more granular view of credit risk.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Payoff
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The goal is an individual bond ladder: a series of bonds with staggered maturities, each selected for a specific client's income needs and time horizon.  Assuming no default, you know what you're getting from the day you buy it regardless of what happens with interest rates.  You hold to maturity and collect what you were promised.  That certainty is rare in investing, and it's why individual bond ladders are the anchor of every client portfolio.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="accordion__item">
-                    <button class="accordion__trigger" aria-expanded="false">
-                        Equities
-                        <span class="accordion__icon"></span>
-                    </button>
-                    <div class="accordion__body">
-                        <div class="accordion__content">
-                            <p>Our equity process combines two foundational valuation methodologies.  The first is a relative value approach: a quantitative model that evaluates a broad universe of companies across fundamental characteristics, identifying names that appear statistically attractive or overbought compared to similar businesses.  This is inherently a market-based lens, measuring how a company is priced against its peers.</p>
-                            <p>The model's output is then balanced with diversified portfolio construction to ensure alignment with the broader economy.  The goal is a portfolio that captures the signals the model identifies while maintaining the kind of sector and factor diversification that keeps a portfolio durable across market environments.</p>
-                            <p>For a small number of names where the relative value signal is particularly compelling, we layer in an income-based approach: building a forward-looking view of the business, estimating future cash flows, and discounting them back to a present value.  Combining both methods, what the market says a company is worth relative to its peers and what the cash flows say it is worth on its own terms, gives a more complete picture than either approach alone.  Names that survive both lenses may become concentrated positions alongside the systematic core.</p>
+
+                <!-- Equities Panel -->
+                <div class="tabs__panel" id="tab-eq">
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Challenge
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>Managing the equity side of a portfolio means selecting securities from a global universe of thousands of companies.  The task is to systematically identify investments that can add value to a diversified portfolio while maintaining alignment with the broader economy.  That is easier said than done.  You need a process that can evaluate a large number of companies on a consistent basis, surface the ones that look mispriced, and do so in a way that can be tested and repeated.</p>
+                                </div>
+                            </div>
                         </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Signal
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The foundation of our equity model is a statistical concept: regression analysis.  For any given company, you can use its fundamental characteristics to establish a predicted value, what the data says a company like this should be worth.  When you compare that predicted value to the actual market price, the gap between the two becomes a signal.  A company trading below its predicted value may be statistically attractive.  A company trading well above it may be overbought.  These gaps are where we focus attention.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Validation
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>A signal is only useful if it holds up over time.  Before any factor becomes an input to the model, it is backtested against historical data to determine whether it actually adds value.  Does buying companies that appear statistically attractive and avoiding those that appear overbought produce better outcomes than ignoring the signal entirely?  The backtesting process answers that question.  Signals that survive this process earn a place in the model.  Those that don't are discarded, regardless of how intuitive they may seem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Portfolio Construction
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The model's output is not the portfolio.  It is an input to a portfolio construction process that applies a series of checks and balances.  The goal is to capture the value the model identifies while maintaining the kind of sector, geographic, and factor diversification that keeps a portfolio durable across market environments.  A strong signal on a single name doesn't justify a concentrated bet if it throws the portfolio out of balance.  Construction is where the model's view meets the realities of risk management and economic alignment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Opportunity Set
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The companies with the strongest raw signals become the opportunity set for deeper work.  These are often smaller companies that are harder to justify including in the systematic portfolio above, but whose characteristics make them worth knowing on a fundamental level.  This is where the process shifts from quantitative to qualitative.</p>
+                                    <p>For these names, we build a forward-looking view of the business using an income-based approach: understanding the story, getting to know management, estimating future cash flows, and discounting them back to a present value.  The question is whether the business is genuinely undervalued or whether the statistical signal is reflecting risk the model doesn't fully capture.  Names that survive that scrutiny may become concentrated positions alongside the systematic core.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -669,6 +803,28 @@
             });
         });
 
+        // Tab switching
+        document.querySelectorAll('.tabs__btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabs = this.closest('.tabs');
+                const targetId = 'tab-' + this.dataset.tab;
+
+                // Deactivate all buttons and panels
+                tabs.querySelectorAll('.tabs__btn').forEach(b => b.classList.remove('active'));
+                tabs.querySelectorAll('.tabs__panel').forEach(p => p.classList.remove('active'));
+
+                // Close any open accordions in both panels
+                tabs.querySelectorAll('.accordion__item').forEach(item => {
+                    item.classList.remove('open');
+                    item.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+                });
+
+                // Activate selected
+                this.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
         // Accordion toggle
         document.querySelectorAll('.accordion__trigger').forEach(trigger => {
             trigger.addEventListener('click', function() {
@@ -679,4 +835,14 @@
                 // Close siblings
                 accordion.querySelectorAll('.accordion__item').forEach(sibling => {
                     sibling.classList.remove('open');
-                    sibling.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+                    sibling.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');                });
+
+                // Toggle current
+                if (!isOpen) { item.classList.add('open'); }
+                this.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+    </script>
+
+</body>
+</html>
