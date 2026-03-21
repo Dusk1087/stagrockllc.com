@@ -162,8 +162,8 @@
             max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md);
         }
         .nav__logo {
-            font-family: var(--font-display); font-size: 1.4rem; font-weight: 600;
-            color: var(--color-text); letter-spacing: 0.02em;
+            font-family: var(--font-display); font-size: 1.2rem; font-weight: 300;
+            color: var(--color-text); letter-spacing: 0.12em; text-transform: uppercase;
             display: flex; align-items: center; gap: 0.5rem; position: relative;
         }
         .nav__logo-img { height: 28px; width: auto; transition: opacity 0.4s ease; }
@@ -221,7 +221,7 @@
             display: block; width: auto; height: 160px; margin: 0 auto var(--space-md);
             animation: fadeIn 1s ease 0.1s both;
         }
-        .hero__content h1 { color: var(--color-bg); margin-bottom: var(--space-md); animation: fadeUp 1s ease 0.3s both; }
+        .hero__content h1 { color: var(--color-bg); margin-bottom: var(--space-md); animation: fadeUp 1s ease 0.3s both; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; }
         .hero__rule {
             width: 80px; height: 1px; background: var(--color-accent);
             margin: 0 auto var(--space-md); animation: fadeIn 1s ease 0.6s both;
@@ -328,7 +328,7 @@
             padding-bottom: var(--space-lg); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             flex-wrap: wrap; gap: var(--space-md);
         }
-        .footer__brand { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--color-bg); }
+        .footer__brand { font-family: var(--font-display); font-size: 1.2rem; font-weight: 300; color: var(--color-bg); letter-spacing: 0.12em; text-transform: uppercase; }
         .footer__brand span { font-weight: 300; color: var(--color-accent); }
         .footer__links { display: flex; gap: var(--space-md); flex-wrap: wrap; }
         .footer__links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em; color: rgba(250, 248, 245, 0.5); transition: color 0.3s ease; }
@@ -575,7 +575,7 @@
                     <div class="contact__info-item">
                         <p class="contact__info-label">Email</p>
                         <p class="contact__info-value">
-                            <a href="mailto:info@stagrockllc.com">info@stagrockllc.com</a>
+                            <a href="/cdn-cgi/l/email-protection#85ecebe3eac5f6f1e4e2f7eae6eee9e9e6abe6eae8"><span class="__cf_email__" data-cfemail="b9d0d7dfd6f9cacdd8decbd6dad2d5d5da97dad6d4">[email&#160;protected]</span></a>
                         </p>
                     </div>
                     <div class="contact__info-item">
@@ -631,7 +631,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Nav scroll effect
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
@@ -680,14 +680,3 @@
                 accordion.querySelectorAll('.accordion__item').forEach(sibling => {
                     sibling.classList.remove('open');
                     sibling.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
-                });
-
-                // Toggle current
-                if (!isOpen) { item.classList.add('open'); }
-                this.setAttribute('aria-expanded', String(!isOpen));
-            });
-        });
-    </script>
-
-</body>
-</html>
