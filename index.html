@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stag Rock LLC | Investment Management</title>
+    <meta name="description" content="Stag Rock LLC is a registered investment advisory firm offering individualized portfolio management through bond ladders and equity strategies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAF8F5;
+            --color-bg-alt: #F2EDE7;
+            --color-text: #2C2824;
+            --color-text-muted: #6B6259;
+            --color-accent: #8B7355;
+            --color-accent-dark: #6B573F;
+            --color-rule: #D4CBBD;
+            --color-white: #FFFFFF;
+            --color-dark: #1E1B18;
+            --color-dark-overlay: rgba(30, 27, 24, 0.75);
+
+            --font-display: 'Cormorant Garamond', 'Book Antiqua', Palatino, Georgia, serif;
+            --font-body: 'Libre Franklin', 'Helvetica Neue', Helvetica, sans-serif;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 6rem;
+            --space-2xl: 8rem;
+
+            --max-width: 1200px;
+            --max-width-narrow: 720px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body); font-weight: 300; color: var(--color-text);
+            background-color: var(--color-bg); line-height: 1.7;
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.2; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; }
+        h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.01em; color: var(--color-text); }
+        h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }
+        p { font-size: 1rem; line-height: 1.8; color: var(--color-text-muted); }
+        a { color: var(--color-accent); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--color-accent-dark); }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md); }
+        .container--narrow { max-width: var(--max-width-narrow); }
+
+        .section-label {
+            font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent);
+            margin-bottom: var(--space-sm);
+        }
+
+        .divider { width: 60px; height: 1px; background: var(--color-accent); margin: var(--space-md) 0; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ─── Accordion ─── */
+        .accordion { border-top: 1px solid var(--color-rule); margin-top: var(--space-md); }
+        .accordion__item { border-bottom: 1px solid var(--color-rule); }
+
+        .accordion__trigger {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: var(--space-md) 0; background: none; border: none; cursor: pointer;
+            text-align: left; font-family: var(--font-display); font-size: 1.2rem;
+            font-weight: 500; color: var(--color-text); letter-spacing: 0.01em;
+            transition: color 0.3s ease;
+        }
+        .accordion__trigger:hover { color: var(--color-accent); }
+
+        .accordion__icon {
+            width: 20px; height: 20px; position: relative; flex-shrink: 0;
+            margin-left: var(--space-md);
+        }
+        .accordion__icon::before, .accordion__icon::after {
+            content: ''; position: absolute; background: var(--color-accent);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .accordion__icon::before { width: 100%; height: 1px; top: 50%; left: 0; }
+        .accordion__icon::after { width: 1px; height: 100%; left: 50%; top: 0; }
+
+        .accordion__item.open .accordion__icon::after { transform: rotate(90deg); opacity: 0; }
+
+        .accordion__body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .accordion__item.open .accordion__body { max-height: 600px; }
+
+        .accordion__content { padding-bottom: var(--space-md); }
+        .accordion__content p { font-size: 0.95rem; margin-bottom: var(--space-sm); }
+        .accordion__content p:last-child { margin-bottom: 0; }
+
+        /* Card-level accordions */
+        .service-card .accordion { border-top: 1px solid rgba(139, 115, 85, 0.3); margin-top: var(--space-sm); }
+        .service-card .accordion__item { border-bottom: none; }
+        .service-card .accordion__trigger {
+            font-family: var(--font-body); font-size: 0.8rem; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent);
+            padding: var(--space-sm) 0 0;
+        }
+        .service-card .accordion__trigger:hover { color: var(--color-bg); }
+        .service-card .accordion__icon { width: 14px; height: 14px; }
+        .service-card .accordion__icon::before, .service-card .accordion__icon::after { background: var(--color-accent); }
+        .service-card .accordion__content { padding-top: var(--space-sm); padding-bottom: var(--space-xs); }
+        .service-card .accordion__content p { font-size: 0.88rem; color: rgba(250, 248, 245, 0.55); }
+
+        /* ─── Navigation ─── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: var(--space-sm) 0;
+            transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+        }
+        .nav .nav__logo { color: var(--color-bg); transition: color 0.4s ease; }
+        .nav .nav__links a { color: rgba(250, 248, 245, 0.7); }
+        .nav .nav__links a:hover { color: var(--color-bg); }
+        .nav .nav__toggle span { background: var(--color-bg); }
+
+        .nav.scrolled {
+            background: rgba(250, 248, 245, 0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); padding: 0.6rem 0;
+            box-shadow: 0 1px 0 var(--color-rule);
+        }
+        .nav.scrolled .nav__logo { color: var(--color-text); }
+        .nav.scrolled .nav__links a { color: var(--color-text-muted); }
+        .nav.scrolled .nav__links a:hover { color: var(--color-accent); }
+        .nav.scrolled .nav__toggle span { background: var(--color-text); }
+
+        .nav__inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md);
+        }
+        .nav__logo {
+            font-family: var(--font-display); font-size: 1.4rem; font-weight: 600;
+            color: var(--color-text); letter-spacing: 0.02em;
+            display: flex; align-items: center; gap: 0.5rem; position: relative;
+        }
+        .nav__logo-img { height: 28px; width: auto; transition: opacity 0.4s ease; }
+        .nav__logo-img--white { opacity: 1; }
+        .nav__logo-img--dark { opacity: 0; position: absolute; left: 0; }
+        .nav.scrolled .nav__logo-img--white { opacity: 0; }
+        .nav.scrolled .nav__logo-img--dark { opacity: 1; }
+        .nav__logo span { font-weight: 300; color: var(--color-accent); }
+
+        .nav__links { display: flex; gap: var(--space-md); list-style: none; }
+        .nav__links a {
+            font-family: var(--font-body); font-size: 0.8rem; font-weight: 400;
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted);
+            text-decoration: none; transition: color 0.3s ease; position: relative;
+        }
+        .nav__links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+            background: var(--color-accent); transition: width 0.3s ease;
+        }
+        .nav__links a:hover { color: var(--color-accent); }
+        .nav__links a:hover::after { width: 100%; }
+
+        .nav__toggle {
+            display: none; background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .nav__toggle span {
+            display: block; width: 22px; height: 1.5px; background: var(--color-text);
+            margin: 5px 0; transition: all 0.3s ease;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; background: var(--color-dark); overflow: hidden;
+        }
+        .hero__bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(139, 115, 85, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 115, 85, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(30, 27, 24, 1) 0%, rgba(44, 40, 36, 1) 50%, rgba(30, 27, 24, 1) 100%);
+        }
+        .hero__pattern {
+            position: absolute; inset: 0; opacity: 0.03;
+            background-image:
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        .hero__content {
+            position: relative; z-index: 2; text-align: center;
+            max-width: 700px; padding: 0 var(--space-md);
+        }
+        .hero__content h1 { color: var(--color-bg); margin-bottom: var(--space-md); animation: fadeUp 1s ease 0.3s both; }
+        .hero__rule {
+            width: 80px; height: 1px; background: var(--color-accent);
+            margin: 0 auto var(--space-md); animation: fadeIn 1s ease 0.6s both;
+        }
+        .hero__tagline {
+            font-family: var(--font-display); font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 300; font-style: italic; color: rgba(250, 248, 245, 0.6);
+            line-height: 1.6; animation: fadeUp 1s ease 0.8s both;
+        }
+
+        /* ─── About ─── */
+        .about { padding: var(--space-2xl) 0; }
+        .about__intro h2 { margin-bottom: var(--space-md); }
+        .about__intro p { margin-bottom: var(--space-sm); }
+
+        /* ─── Services ─── */
+        .services { padding: var(--space-2xl) 0; background: var(--color-dark); }
+        .services__header { text-align: center; margin-bottom: var(--space-xl); }
+        .services__header h2 { margin-bottom: var(--space-sm); color: var(--color-bg); }
+        .services__header .section-label { color: var(--color-accent); }
+        .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+
+        .service-card {
+            background: rgba(250, 248, 245, 0.04); padding: var(--space-lg) var(--space-md);
+            border: none; border-left: 2px solid var(--color-accent);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+        .service-card:hover { border-left-color: var(--color-bg); transform: translateY(-4px); }
+        .service-card__number {
+            font-family: var(--font-display); font-size: 2.5rem; font-weight: 300;
+            color: rgba(139, 115, 85, 0.4); line-height: 1; margin-bottom: var(--space-md);
+        }
+        .service-card h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-bg); margin-bottom: var(--space-sm); }
+        .service-card p { font-size: 0.92rem; color: rgba(250, 248, 245, 0.65); }
+
+        /* ─── Differentiator ─── */
+        .differentiator {
+            padding: var(--space-2xl) 0;
+            background: var(--color-bg);
+        }
+        .differentiator__inner {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .differentiator__headline {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.4;
+            margin-bottom: var(--space-md);
+        }
+        .differentiator__body p {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* ─── Bio ─── */
+        .bio { padding: var(--space-2xl) 0; background: var(--color-bg-alt); }
+        .bio__inner { display: grid; grid-template-columns: 300px 1fr; gap: var(--space-xl); align-items: start; }
+        .bio__portrait { position: relative; }
+        .bio__portrait-frame {
+            width: 100%; aspect-ratio: 3 / 4; background: var(--color-dark);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .bio__portrait-frame::before {
+            content: ''; position: absolute; inset: 8px;
+            border: 1px solid rgba(139, 115, 85, 0.25); z-index: 1; pointer-events: none;
+        }
+        .bio__portrait-img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center top;
+            position: relative; z-index: 0;
+        }
+        .bio__portrait-name { margin-top: var(--space-sm); text-align: center; }
+        .bio__portrait-name h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; color: var(--color-text); margin-bottom: 0.25rem; }
+        .bio__portrait-name p { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); }
+        .bio__content h2 { margin-bottom: var(--space-md); }
+        .bio__content p { margin-bottom: var(--space-sm); }
+
+        /* ─── Contact ─── */
+        .contact { padding: var(--space-2xl) 0; }
+        .contact__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+        .contact__text h2 { margin-bottom: var(--space-md); }
+        .contact__text p { margin-bottom: var(--space-sm); }
+        .contact__info { padding-top: var(--space-sm); }
+        .contact__info-item { padding: var(--space-md) 0; border-top: 1px solid var(--color-rule); }
+        .contact__info-label {
+            font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent);
+            margin-bottom: 0.4rem;
+        }
+        .contact__info-value { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-text); }
+        .contact__info-value a { color: var(--color-text); }
+        .contact__info-value a:hover { color: var(--color-accent); }
+
+        /* ─── Footer ─── */
+        .footer { background: var(--color-dark); padding: var(--space-lg) 0 var(--space-md); }
+        .footer__upper {
+            display: flex; justify-content: space-between; align-items: start;
+            padding-bottom: var(--space-lg); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap; gap: var(--space-md);
+        }
+        .footer__brand { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--color-bg); }
+        .footer__brand span { font-weight: 300; color: var(--color-accent); }
+        .footer__links { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+        .footer__links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em; color: rgba(250, 248, 245, 0.5); transition: color 0.3s ease; }
+        .footer__links a:hover { color: var(--color-accent); }
+        .footer__disclosure { padding-top: var(--space-md); }
+        .footer__disclosure p { font-size: 0.75rem; line-height: 1.7; color: rgba(250, 248, 245, 0.35); }
+        .footer__bottom { padding-top: var(--space-md); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm); }
+        .footer__bottom p { font-size: 0.75rem; color: rgba(250, 248, 245, 0.3); }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .nav__links {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(250, 248, 245, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; padding: var(--space-md); gap: var(--space-sm);
+                border-bottom: 1px solid var(--color-rule);
+            }
+            .nav__links.open { display: flex; }
+            .nav__toggle { display: block; }
+            .contact__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+            .services__grid { grid-template-columns: 1fr; }
+            .bio__inner { grid-template-columns: 1fr; }
+            .bio__portrait { max-width: 250px; }
+            .bio__portrait-name { text-align: left; }
+            .footer__upper { flex-direction: column; }
+        }
+
+        @media (max-width: 600px) {
+            :root { --space-2xl: 5rem; --space-xl: 3.5rem; }
+            .hero__content { padding: 0 var(--space-sm); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo"><img src="logo-white.png" alt="Stag Rock" class="nav__logo-img nav__logo-img--white"><img src="logo-grey.png" alt="Stag Rock" class="nav__logo-img nav__logo-img--dark">Stag Rock</a>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Approach</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero__bg"></div>
+        <div class="hero__pattern"></div>
+        <div class="hero__content">
+            <h1>Stag Rock</h1>
+            <div class="hero__rule"></div>
+            <p class="hero__tagline">
+                Individualized portfolio management built on<br>
+                valuation discipline and intellectual honesty
+            </p>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container container--narrow">
+            <div class="reveal">
+                <p class="section-label">About</p>
+                <h2>Valuation is the foundation</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="reveal" style="margin-bottom: var(--space-sm);">
+                <p>
+                    Stag Rock was built around one question: does the price make sense?  We apply that discipline across fixed income and equities, using the tools and frameworks appropriate to each.
+                </p>
+            </div>
+
+            <div class="accordion reveal">
+                <div class="accordion__item">
+                    <button class="accordion__trigger" aria-expanded="false">
+                        Fixed Income
+                        <span class="accordion__icon"></span>
+                    </button>
+                    <div class="accordion__body">
+                        <div class="accordion__content">
+                            <p>The bond market is not like the stock market.  It is fragmented, diverse, and often opaque.  Many bonds don't trade on the open market.  You're not just buying a company, you're buying into a credit stack where seniority of claims matters.  Filtering that universe down to the bonds worth holding is the core of our fixed income process.</p>
+                            <p>We use a quantitative model to work through the layers of that market systematically, identifying securities that meet the credit quality, maturity, and structural characteristics that make sense in a client portfolio.  Credit risk assessment goes beyond the rating agencies, whose limitations were made clear in the global financial crisis.  We supplement traditional ratings with Bloomberg's proprietary default probability model, which evaluates the financial characteristics of each issuer against a deep history of actual defaults to produce a more granular view of credit risk.</p>
+                            <p>The goal is an individual bond ladder where, assuming no default, you know what you're getting from the day you buy it regardless of what happens with rates.  You hold to maturity and collect what you were promised.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion__item">
+                    <button class="accordion__trigger" aria-expanded="false">
+                        Equities
+                        <span class="accordion__icon"></span>
+                    </button>
+                    <div class="accordion__body">
+                        <div class="accordion__content">
+                            <p>Our equity process combines two foundational valuation methodologies.  The first is a relative value approach: a quantitative model that evaluates a broad universe of companies across fundamental characteristics, identifying names that appear statistically attractive or overbought compared to similar businesses.  This is inherently a market-based lens, measuring how a company is priced against its peers.</p>
+                            <p>The model's output is then balanced with diversified portfolio construction to ensure alignment with the broader economy.  The goal is a portfolio that captures the signals the model identifies while maintaining the kind of sector and factor diversification that keeps a portfolio durable across market environments.</p>
+                            <p>For a small number of names where the relative value signal is particularly compelling, we layer in an income-based approach: building a forward-looking view of the business, estimating future cash flows, and discounting them back to a present value.  Combining both methods, what the market says a company is worth relative to its peers and what the cash flows say it is worth on its own terms, gives a more complete picture than either approach alone.  Names that survive both lenses may become concentrated positions alongside the systematic core.</p>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services__header reveal">
+                <p class="section-label">Approach</p>
+                <h2>How we work</h2>
+            </div>
+            <div class="services__grid">
+                <div class="service-card reveal">
+                    <div class="service-card__number">01</div>
+                    <h3>Fiduciary Standard</h3>
+                    <p>Stag Rock is a registered investment adviser with a fiduciary obligation to act in the best interest of every client.</p>
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Details
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>We do not sell annuities, insurance, mutual funds, limited partnerships, or other commissioned products.  Our only compensation is the advisory fee agreed upon with each client.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card__number">02</div>
+                    <h3>Independent Custody</h3>
+                    <p>Client assets are held at Charles Schwab & Co., Inc., an independent qualified custodian.</p>
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Details
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>Stag Rock is not affiliated with any broker-dealer, bank, or insurance company.  Client funds are never held by the adviser.  Schwab provides independent account statements and trade confirmations directly to clients.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card__number">03</div>
+                    <h3>Research-Driven</h3>
+                    <p>Portfolios are built on proprietary models developed and maintained in-house, not outsourced strategies or third-party products.</p>
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Details
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The equity and fixed income models are applied across client accounts so that everyone tracks together and course corrections can be made systematically.  Each household's allocation reflects its own circumstances, but the underlying research process is consistent.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiator -->
+    <section class="differentiator">
+        <div class="container">
+            <div class="differentiator__inner reveal">
+                <div class="divider" style="margin: 0 auto var(--space-md);"></div>
+                <p class="differentiator__headline">
+                    The person you speak with is the person managing your portfolio.
+                </p>
+                <div class="differentiator__body">
+                    <p>
+                        At most firms, the person managing your portfolio and the person you speak with are not the same person.  There are good reasons for that at scale.  Stag Rock was built differently.  The person responsible for the research, the models, and the portfolio construction is the same person who picks up the phone.  That was the point from the beginning.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bio -->
+    <section class="bio" id="team">
+        <div class="container">
+            <div class="bio__inner">
+                <div class="bio__portrait reveal">
+                    <div class="bio__portrait-frame">
+                        <img src="headshot.jpg" alt="Reed Foster" class="bio__portrait-img">
+                    </div>
+                    <div class="bio__portrait-name">
+                        <h3>Reed Foster, CFA, CPA</h3>
+                        <p>Founder & Portfolio Manager</p>
+                    </div>
+                </div>
+                <div class="bio__content reveal">
+                    <p class="section-label">Leadership</p>
+                    <h2>Background</h2>
+                    <div class="divider"></div>
+                    <p>
+                        Reed Foster founded Stag Rock in 2018 after a career that spanned naval aviation, portfolio management, and investment banking.  He spent eleven years as a naval officer and F/A-18 pilot, completing multiple deployments overseas and graduating from the Navy's Fighter Weapons School (TOPGUN) before serving as an instructor pilot.  After the Navy, he worked as a portfolio manager and later as an investment banker at Moelis & Company in New York City, giving him experience across both sides of the capital markets before setting out on his own.
+                    </p>
+
+                    <p>
+                        Reed is a CFA Charterholder and licensed CPA in Virginia.  He holds an MBA from the College of William & Mary, a Master of Accounting from the University of North Carolina at Chapel Hill, and a B.S. in Systems Engineering from the United States Naval Academy.
+                    </p>
+                    <p>
+                        He continues to fly professionally as a Boeing 777 First Officer for a major cargo carrier.  Flying globally as a cargo pilot provides a firsthand view of how goods, capital, and commerce move around the world, a perspective that informs how he thinks about markets.
+                    </p>
+                    <p>
+                        Reed also operates Stag Rock CPA, PLLC, which allows him to take on private business valuation work on a case-by-case basis.  These engagements draw on income-based and market-based approaches alongside precedent transaction analysis where control premiums and M&A context are relevant, and typically involve shareholder transactions, partner buyouts, or corporate planning.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact__inner">
+                <div class="contact__text reveal">
+                    <p class="section-label">Contact</p>
+                    <h2>Reach the firm</h2>
+                    <div class="divider"></div>
+                    <p>
+                        To learn more about how we manage portfolios, please reach out.
+                    </p>
+                </div>
+                <div class="contact__info reveal">
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Email</p>
+                        <p class="contact__info-value">
+                            <a href="mailto:info@stagrockllc.com">info@stagrockllc.com</a>
+                        </p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Location</p>
+                        <p class="contact__info-value">Virginia Beach, Virginia</p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Custodian</p>
+                        <p class="contact__info-value">Charles Schwab & Co., Inc.</p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Regulatory</p>
+                        <p class="contact__info-value">
+                            <a href="https://brokercheck.finra.org/" target="_blank" rel="noopener">FINRA BrokerCheck</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://adviserinfo.sec.gov/" target="_blank" rel="noopener">Form ADV</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__upper">
+                <div class="footer__brand"><img src="logo-white.png" alt="" style="height: 24px; width: auto; margin-right: 0.5rem; vertical-align: middle;">Stag Rock</div>
+                <div class="footer__links">
+                    <a href="#about">About</a>
+                    <a href="#services">Approach</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer__disclosure">
+                <p>
+                    Stag Rock LLC (CRD# 300202) is a registered investment adviser in the states of Virginia, Washington, and Texas.  Registration does not imply a certain level of skill or training.  The information provided on this website is for informational purposes only and does not constitute investment advice, a solicitation, or a recommendation to buy or sell any securities.  Past performance is not indicative of future results.  All investing involves risk, including the potential loss of principal.  Client assets are custodied at Charles Schwab & Co., Inc.  Please review our <a href="https://adviserinfo.sec.gov/" target="_blank" rel="noopener" style="color: rgba(250, 248, 245, 0.5);">Form ADV Part 2A</a> for important disclosures regarding our services, fees, and business practices.
+                </p>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Stag Rock, LLC. All rights reserved.</p>
+                <p>CRD No. 300202</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Mobile nav toggle
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => { links.classList.toggle('open'); });
+
+        // Close mobile nav on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { links.classList.remove('open'); });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+
+        // Accordion toggle
+        document.querySelectorAll('.accordion__trigger').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const item = this.closest('.accordion__item');
+                const isOpen = item.classList.contains('open');
+                const accordion = item.closest('.accordion');
+
+                // Close siblings
+                accordion.querySelectorAll('.accordion__item').forEach(sibling => {
+                    sibling.classList.remove('open');
+                    sibling.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+                });
+
+                // Toggle current
+                if (!isOpen) { item.classList.add('open'); }
+                this.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+    </script>
+
+</body>
+</html>
