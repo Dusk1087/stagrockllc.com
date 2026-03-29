@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stag Rock LLC | Investment Management</title>
+    <meta name="description" content="Stag Rock LLC is a registered investment advisory firm based in Virginia Beach, Virginia, managing individual bond ladders and equity portfolios for each client household.">
+    <link rel="canonical" href="https://stagrockllc.com/">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Stag Rock LLC | Investment Management">
+    <meta property="og:description" content="Registered investment advisory firm managing individual bond ladders and equity portfolios.  Virginia Beach, Virginia.">
+    <meta property="og:url" content="https://stagrockllc.com/">
+    <meta property="og:image" content="https://stagrockllc.com/logo-white.png">
+    <meta property="og:site_name" content="Stag Rock LLC">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Stag Rock LLC | Investment Management">
+    <meta name="twitter:description" content="Registered investment advisory firm managing individual bond ladders and equity portfolios.  Virginia Beach, Virginia.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #FAF8F5;
+            --color-bg-alt: #F2EDE7;
+            --color-text: #2C2824;
+            --color-text-muted: #6B6259;
+            --color-accent: #8B7355;
+            --color-accent-dark: #6B573F;
+            --color-rule: #D4CBBD;
+            --color-white: #FFFFFF;
+            --color-dark: #1E1B18;
+            --color-dark-overlay: rgba(30, 27, 24, 0.75);
+
+            --font-display: 'Cormorant Garamond', 'Book Antiqua', Palatino, Georgia, serif;
+            --font-body: 'Libre Franklin', 'Helvetica Neue', Helvetica, sans-serif;
+
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 6rem;
+            --space-2xl: 8rem;
+
+            --max-width: 1200px;
+            --max-width-narrow: 960px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body); font-weight: 300; color: var(--color-text);
+            background-color: var(--color-bg); line-height: 1.7;
+            -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1.2; }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; }
+        h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.01em; color: var(--color-text); }
+        h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); font-weight: 500; }
+        p { font-size: 1rem; line-height: 1.8; color: var(--color-text-muted); }
+        a { color: var(--color-accent); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--color-accent-dark); }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md); }
+        .container--narrow { max-width: var(--max-width-narrow); }
+
+        .section-label {
+            font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent);
+            margin-bottom: var(--space-sm);
+        }
+
+        .divider { width: 60px; height: 1px; background: var(--color-accent); margin: var(--space-md) 0; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* ─── Tabs ─── */
+        .tabs { margin-top: var(--space-md); }
+        .tabs__nav {
+            display: flex; gap: 0; border-bottom: 1px solid var(--color-rule);
+            margin-bottom: var(--space-md);
+        }
+        .tabs__btn {
+            background: none; border: none; cursor: pointer;
+            font-family: var(--font-display); font-size: 1.2rem; font-weight: 500;
+            color: var(--color-text-muted); padding: var(--space-sm) var(--space-md);
+            position: relative; transition: color 0.3s ease;
+            letter-spacing: 0.01em;
+        }
+        .tabs__btn:hover { color: var(--color-text); }
+        .tabs__btn.active { color: var(--color-text); }
+        .tabs__btn.active::after {
+            content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+            height: 2px; background: var(--color-accent);
+        }
+        .tabs__panel { display: none; }
+        .tabs__panel.active { display: block; }
+
+        /* ─── Accordion ─── */
+        .accordion { border-top: 1px solid var(--color-rule); margin-top: var(--space-md); }
+        .accordion__item { border-bottom: 1px solid var(--color-rule); }
+
+        .accordion__trigger {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: var(--space-md) 0; background: none; border: none; cursor: pointer;
+            text-align: left; font-family: var(--font-display); font-size: 1.2rem;
+            font-weight: 500; color: var(--color-text); letter-spacing: 0.01em;
+            transition: color 0.3s ease;
+        }
+        .accordion__trigger:hover { color: var(--color-accent); }
+
+        .accordion__icon {
+            width: 20px; height: 20px; position: relative; flex-shrink: 0;
+            margin-left: var(--space-md);
+        }
+        .accordion__icon::before, .accordion__icon::after {
+            content: ''; position: absolute; background: var(--color-accent);
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        .accordion__icon::before { width: 100%; height: 1px; top: 50%; left: 0; }
+        .accordion__icon::after { width: 1px; height: 100%; left: 50%; top: 0; }
+
+        .accordion__item.open .accordion__icon::after { transform: rotate(90deg); opacity: 0; }
+
+        .accordion__body {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        .accordion__item.open .accordion__body { max-height: 2000px; }
+
+        .accordion__content { padding-bottom: var(--space-md); }
+        .accordion__content p { font-size: 0.95rem; margin-bottom: var(--space-sm); }
+        .accordion__content p:last-child { margin-bottom: 0; }
+
+        /* Card-level accordions */
+        .service-card .accordion { border-top: 1px solid rgba(139, 115, 85, 0.3); margin-top: var(--space-sm); }
+        .service-card .accordion__item { border-bottom: none; }
+        .service-card .accordion__trigger {
+            font-family: var(--font-body); font-size: 0.8rem; font-weight: 500;
+            letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent);
+            padding: var(--space-sm) 0 0;
+        }
+        .service-card .accordion__trigger:hover { color: var(--color-bg); }
+        .service-card .accordion__icon { width: 14px; height: 14px; }
+        .service-card .accordion__icon::before, .service-card .accordion__icon::after { background: var(--color-accent); }
+        .service-card .accordion__content { padding-top: var(--space-sm); padding-bottom: var(--space-xs); }
+        .service-card .accordion__content p { font-size: 0.88rem; color: rgba(250, 248, 245, 0.55); }
+
+        /* ─── Navigation ─── */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: var(--space-sm) 0;
+            transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+        }
+        .nav .nav__logo { color: var(--color-bg); transition: color 0.4s ease; }
+        .nav .nav__links a { color: rgba(250, 248, 245, 0.7); }
+        .nav .nav__links a:hover { color: var(--color-bg); }
+        .nav .nav__toggle span { background: var(--color-bg); }
+
+        .nav.scrolled {
+            background: rgba(250, 248, 245, 0.95); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); padding: 0.6rem 0;
+            box-shadow: 0 1px 0 var(--color-rule);
+        }
+        .nav.scrolled .nav__logo { color: var(--color-text); }
+        .nav.scrolled .nav__links a { color: var(--color-text-muted); }
+        .nav.scrolled .nav__links a:hover { color: var(--color-accent); }
+        .nav.scrolled .nav__toggle span { background: var(--color-text); }
+
+        .nav__inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-md);
+        }
+        .nav__logo {
+            font-family: var(--font-display); font-size: 1.2rem; font-weight: 300;
+            color: var(--color-text); letter-spacing: 0.12em; text-transform: uppercase;
+            display: flex; align-items: center; gap: 0.5rem; position: relative;
+        }
+        .nav__logo-img { height: 28px; width: auto; transition: opacity 0.4s ease, visibility 0.4s ease; }
+        .nav__logo-img--white { opacity: 1; visibility: visible; }
+        .nav__logo-img--dark { opacity: 0; visibility: hidden; position: absolute; left: 0; }
+        .nav.scrolled .nav__logo-img--white { opacity: 0; visibility: hidden; }
+        .nav.scrolled .nav__logo-img--dark { opacity: 1; visibility: visible; }
+        .nav__logo span { font-weight: 300; color: var(--color-accent); }
+
+        .nav__links { display: flex; gap: var(--space-md); list-style: none; }
+        .nav__links a {
+            font-family: var(--font-body); font-size: 0.8rem; font-weight: 400;
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted);
+            text-decoration: none; transition: color 0.3s ease; position: relative;
+        }
+        .nav__links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px;
+            background: var(--color-accent); transition: width 0.3s ease;
+        }
+        .nav__links a:hover { color: var(--color-accent); }
+        .nav__links a:hover::after { width: 100%; }
+
+        .nav__toggle {
+            display: none; background: none; border: none; cursor: pointer; padding: 8px;
+        }
+        .nav__toggle span {
+            display: block; width: 22px; height: 1.5px; background: var(--color-text);
+            margin: 5px 0; transition: all 0.3s ease;
+        }
+
+        /* ─── Hero ─── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; background: var(--color-dark); overflow: hidden;
+        }
+        .hero__bg {
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(139, 115, 85, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 115, 85, 0.08) 0%, transparent 50%),
+                linear-gradient(180deg, rgba(30, 27, 24, 1) 0%, rgba(44, 40, 36, 1) 50%, rgba(30, 27, 24, 1) 100%);
+        }
+        .hero__pattern {
+            position: absolute; inset: 0; opacity: 0.03;
+            background-image:
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+        .hero__content {
+            position: relative; z-index: 2; text-align: center;
+            max-width: 700px; padding: 0 var(--space-md);
+        }
+        .hero__logo {
+            display: block; width: auto; height: 160px; margin: 0 auto var(--space-md);
+            animation: fadeIn 1s ease 0.1s both;
+        }
+        .hero__content h1 { color: var(--color-bg); margin-bottom: var(--space-md); animation: fadeUp 1s ease 0.3s both; font-weight: 300; text-transform: uppercase; letter-spacing: 0.15em; }
+        .hero__rule {
+            width: 80px; height: 1px; background: var(--color-accent);
+            margin: 0 auto var(--space-md); animation: fadeIn 1s ease 0.6s both;
+        }
+        .hero__tagline {
+            font-family: var(--font-display); font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-weight: 300; font-style: italic; color: rgba(250, 248, 245, 0.6);
+            line-height: 1.6; animation: fadeUp 1s ease 0.8s both;
+        }
+
+        /* ─── About ─── */
+        .about { padding: var(--space-2xl) 0; }
+        .about__intro h2 { margin-bottom: var(--space-md); }
+        .about__intro p { margin-bottom: var(--space-sm); }
+
+        /* ─── Services ─── */
+        .services { padding: var(--space-2xl) 0; background: var(--color-dark); }
+        .services__header { text-align: left; margin-bottom: var(--space-xl); }
+        .services__header h2 { margin-bottom: var(--space-sm); color: var(--color-bg); }
+        .services__header .section-label { color: var(--color-accent); }
+        .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+
+        .service-card {
+            background: rgba(250, 248, 245, 0.04); padding: var(--space-lg) var(--space-md);
+            border: none; border-left: 2px solid var(--color-accent);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+        .service-card:hover { border-left-color: var(--color-bg); transform: translateY(-4px); }
+        .service-card__number {
+            font-family: var(--font-display); font-size: 2.5rem; font-weight: 300;
+            color: rgba(139, 115, 85, 0.4); line-height: 1; margin-bottom: var(--space-md);
+        }
+        .service-card h3 { font-family: var(--font-display); font-size: 1.3rem; color: var(--color-bg); margin-bottom: var(--space-sm); }
+        .service-card p { font-size: 0.92rem; color: rgba(250, 248, 245, 0.65); }
+
+        /* ─── Differentiator ─── */
+        .differentiator {
+            padding: var(--space-2xl) 0;
+            background: var(--color-bg);
+        }
+        .differentiator__inner {
+            max-width: 680px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .differentiator__headline {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 2.8vw, 2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.4;
+            margin-bottom: var(--space-md);
+        }
+        .differentiator__body p {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* ─── Bio ─── */
+        .bio { padding: var(--space-2xl) 0; background: var(--color-bg-alt); }
+        .bio__inner { display: grid; grid-template-columns: 300px 1fr; gap: var(--space-xl); align-items: start; }
+        .bio__portrait { position: relative; }
+        .bio__portrait-frame {
+            width: 100%; aspect-ratio: 3 / 4; background: var(--color-dark);
+            display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
+        }
+        .bio__portrait-frame::before {
+            content: ''; position: absolute; inset: 8px;
+            border: 1px solid rgba(139, 115, 85, 0.25); z-index: 1; pointer-events: none;
+        }
+        .bio__portrait-img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center top;
+            position: relative; z-index: 0;
+        }
+        .bio__portrait-name { margin-top: var(--space-sm); text-align: center; }
+        .bio__portrait-name h3 { font-family: var(--font-display); font-size: 1.4rem; font-weight: 500; color: var(--color-text); margin-bottom: 0.25rem; }
+        .bio__portrait-name p { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); }
+        .bio__content h2 { margin-bottom: var(--space-md); }
+        .bio__content p { margin-bottom: var(--space-sm); }
+
+        /* ─── Contact ─── */
+        .contact { padding: var(--space-2xl) 0; }
+        .contact__inner { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); }
+        .contact__text h2 { margin-bottom: var(--space-md); }
+        .contact__text p { margin-bottom: var(--space-sm); }
+        .contact__info { padding-top: var(--space-sm); }
+        .contact__info-item { padding: var(--space-md) 0; border-top: 1px solid var(--color-rule); }
+        .contact__info-label {
+            font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
+            letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent);
+            margin-bottom: 0.4rem;
+        }
+        .contact__info-value { font-family: var(--font-display); font-size: 1.15rem; color: var(--color-text); }
+        .contact__info-value a { color: var(--color-text); }
+        .contact__info-value a:hover { color: var(--color-accent); }
+
+        /* ─── Footer ─── */
+        .footer { background: var(--color-dark); padding: var(--space-lg) 0 var(--space-md); }
+        .footer__upper {
+            display: flex; justify-content: space-between; align-items: start;
+            padding-bottom: var(--space-lg); border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap; gap: var(--space-md);
+        }
+        .footer__brand { font-family: var(--font-display); font-size: 1.2rem; font-weight: 300; color: var(--color-bg); letter-spacing: 0.12em; text-transform: uppercase; }
+        .footer__brand span { font-weight: 300; color: var(--color-accent); }
+        .footer__links { display: flex; gap: var(--space-md); flex-wrap: wrap; }
+        .footer__links a { font-size: 0.8rem; font-weight: 400; letter-spacing: 0.05em; color: rgba(250, 248, 245, 0.5); transition: color 0.3s ease; }
+        .footer__links a:hover { color: var(--color-accent); }
+        .footer__disclosure { padding-top: var(--space-md); }
+        .footer__disclosure p { font-size: 0.75rem; line-height: 1.7; color: rgba(250, 248, 245, 0.35); }
+        .footer__bottom { padding-top: var(--space-md); display: flex; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm); }
+        .footer__bottom p { font-size: 0.75rem; color: rgba(250, 248, 245, 0.3); }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .nav__links {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(250, 248, 245, 0.98); backdrop-filter: blur(10px);
+                flex-direction: column; padding: var(--space-md); gap: var(--space-sm);
+                border-bottom: 1px solid var(--color-rule);
+            }
+            .nav__links.open { display: flex; }
+            .nav__toggle { display: block; }
+            .contact__inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+            .services__grid { grid-template-columns: 1fr; }
+            .bio__inner { grid-template-columns: 1fr; }
+            .bio__portrait { max-width: 250px; }
+            .bio__portrait-name { text-align: left; }
+            .footer__upper { flex-direction: column; }
+        }
+
+        @media (max-width: 600px) {
+            :root { --space-2xl: 5rem; --space-xl: 3.5rem; }
+            .hero__content { padding: 0 var(--space-sm); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#" class="nav__logo"><img src="logo-white.png" alt="Stag Rock" class="nav__logo-img nav__logo-img--white"><img src="logo-black.png" alt="" class="nav__logo-img nav__logo-img--dark">Stag Rock</a>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Approach</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero__bg"></div>
+        <div class="hero__pattern"></div>
+        <div class="hero__content">
+            <img src="logo-white.png" alt="Stag Rock" class="hero__logo">
+            <h1>Stag Rock</h1>
+            <div class="hero__rule"></div>
+            <p class="hero__tagline">
+                Individualized portfolio management driven by<br>
+                intellectual honesty and value investing fundamentals
+            </p>
+            <p class="hero__tagline" style="margin-top: 1em;">
+                <span style="display:inline-block; font-size: 0.85em; font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5;">Virginia Beach, Virginia</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container container--narrow">
+            <div class="reveal">
+                <p class="section-label">About</p>
+                <h2>Valuation is the foundation</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="reveal" style="margin-bottom: var(--space-sm);">
+                <p>
+                    Stag Rock was built from the ground up.  The investment philosophy came from years of studying how markets work, learning from great investors, and deciding for ourselves which frameworks hold up in practice.  The research models and portfolio construction process were then built in-house around that philosophy.  What matters most is the ability to stand behind the process and say, this makes sense.  We are grateful for the clients who trust us with that responsibility.
+                </p>
+            </div>
+
+            <div class="tabs reveal">
+                <div class="tabs__nav">
+                    <button class="tabs__btn active" data-tab="fi">Fixed Income</button>
+                    <button class="tabs__btn" data-tab="eq">Equities</button>
+                </div>
+
+                <!-- Fixed Income Panel -->
+                <div class="tabs__panel active" id="tab-fi">
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                What is a Bond
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>To understand a bond, start with how a business is valued.  The total value of a business, its enterprise value, is its debt plus its equity minus its cash.  It works the same way as a home: your house is worth the equity you own plus the mortgage you owe.  A business is no different.  One side of that value belongs to the equity holders, the owners.  The other side belongs to the lenders, the people who loaned the business money.</p>
+                                    <p>Companies borrow money because debt is generally cheaper than issuing stock.  But that lower cost comes with strings attached.  Debt often carries covenants, restrictions on what the business can and cannot do, designed to protect the lenders.  It also comes with a priority structure: if something goes wrong, who gets paid first, who gets paid last, and who gets nothing.  Bank lenders typically sit at the top of that stack.  Equity holders sit at the bottom.  Bondholders sit in between, typically in the subordinated structure, below the banks but above the owners.</p>
+                                    <p>When you buy a bond, you are buying into that side of the capitalization table.  You are lending money to a business in exchange for a contractual promise: a series of interest payments on a set schedule and the return of your principal at maturity.  Unlike a stock, there is no story to forecast, no earnings surprise to anticipate, no market sentiment to interpret.  It is a contract.  Understanding where you sit in the capital structure, who has a claim ahead of you, what protections are in place, and what the business looks like financially, is fundamental to evaluating whether that contract is worth holding.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Fixed Income Market
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The bond market has been called the wild west, and there is truth to that.  Unlike the stock market, where a company typically has one class of common stock trading on a centralized exchange with real-time pricing, a single company might have dozens of outstanding bond issues, each with different maturities, coupon rates, seniority levels, and covenant packages.  Many of these bonds don't trade on an open exchange at all.  Pricing is often opaque, liquidity varies widely, and the information asymmetry between institutional and individual investors is significant.</p>
+                                    <p>This makes the fixed income market fundamentally harder to navigate than equities.  You can pull up a stock quote in seconds and see every trade that happened today.  With bonds, you may be looking at a security that last traded weeks ago, with a price that was negotiated between two parties over the phone.  The universe is enormous: government debt, investment-grade corporate bonds, high-yield issuers, municipal securities, each with their own structural nuances.  Sorting through that universe to find the bonds that actually belong in a client portfolio requires a systematic process, not a manual search.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                What We Hold
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>Client bond ladders draw from three primary segments of the fixed income market, each serving a different role in the portfolio.</p>
+                                    <p>Government securities, including U.S. Treasuries and agency bonds, form the most conservative layer.  These carry the full faith and credit of the U.S. government or its agencies and are the closest thing to a risk-free asset that exists.  They provide a baseline of safety and liquidity in every portfolio and serve as the benchmark against which all other fixed income is measured.</p>
+                                    <p>Municipal bonds are issued by state and local governments to fund public projects.  The interest income on most municipal bonds is exempt from federal income tax, and in many cases from state and local taxes as well.  For clients in higher tax brackets, municipals can deliver a higher after-tax yield than a comparably rated corporate bond.  The tax treatment makes them particularly valuable in taxable accounts where every basis point of yield retained matters.</p>
+                                    <p>Investment-grade corporate bonds are issued by publicly traded and privately held companies to fund operations, acquisitions, or refinance existing debt.  They offer higher yields than government securities in exchange for taking on the credit risk of the issuing company.  This is where the capital structure analysis matters most: understanding the company's financial health, where the bond sits in the priority of claims, and whether the yield adequately compensates for the risk.</p>
+                                    <p>The mix of government, municipal, and corporate bonds in each client's ladder depends on their tax situation, income needs, risk tolerance, and time horizon.  There is no default allocation.  Every ladder is built for the household it serves.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Research Process
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>We use a quantitative model to work through the layers of that market systematically, identifying securities that meet the credit quality, maturity, and structural characteristics that make sense in a client portfolio.  The model filters a vast and fragmented universe down to the securities worth evaluating, saving the manual effort of sorting through thousands of issues that don't meet the criteria.</p>
+                                    <p>Credit risk assessment goes beyond the rating agencies, whose limitations were made clear in the global financial crisis.  We supplement traditional ratings with Bloomberg's proprietary default probability model, which evaluates the financial characteristics of each issuer against a deep history of actual defaults to produce a more granular view of credit risk.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Payoff
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The goal is an individual bond ladder: a series of bonds with staggered maturities, each selected for a specific client's income needs and time horizon.  Assuming no default, you know what you're getting from the day you buy it regardless of what happens with interest rates.  You hold to maturity and collect what you were promised.  That certainty is rare in investing, and it's why individual bond ladders are the anchor of every client portfolio.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equities Panel -->
+                <div class="tabs__panel" id="tab-eq">
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Challenge
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>Managing the equity side of a portfolio means selecting securities from a global universe of thousands of companies.  The task is to systematically identify investments that can add value to a diversified portfolio while maintaining alignment with the broader economy.  That is easier said than done.  You need a process that can evaluate a large number of companies on a consistent basis, surface the ones that look mispriced, and do so in a way that can be tested and repeated.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Signal
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The foundation of our equity model is a statistical concept: regression analysis.  For any given company, you can use its fundamental characteristics to establish a predicted value, what the data says a company like this should be worth.  When you compare that predicted value to the actual market price, the gap between the two becomes a signal.  A company trading below its predicted value may be statistically attractive.  A company trading well above it may be overbought.  These gaps are where we focus attention.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Validation
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>A signal is only useful if it holds up over time.  Before any factor becomes an input to the model, it is backtested against historical data to determine whether it actually adds value.  Does buying companies that appear statistically attractive and avoiding those that appear overbought produce better outcomes than ignoring the signal entirely?  The backtesting process answers that question.  Signals that survive this process earn a place in the model.  Those that don't are discarded, regardless of how intuitive they may seem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Portfolio Construction
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The model's output is not the portfolio.  It is an input to a portfolio construction process that applies a series of checks and balances.  The goal is to capture the value the model identifies while maintaining the kind of sector, geographic, and factor diversification that keeps a portfolio durable across market environments.  A strong signal on a single name doesn't justify a concentrated bet if it throws the portfolio out of balance.  Construction is where the model's view meets the realities of risk management and economic alignment.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                The Opportunity Set
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The companies with the strongest raw signals become the opportunity set for deeper work.  These are often smaller companies that are harder to justify including in the systematic portfolio above, but whose characteristics make them worth knowing on a fundamental level.  This is where the process shifts from quantitative to qualitative.</p>
+                                    <p>For these names, we build a forward-looking view of the business using an income-based approach: understanding the story, getting to know management, estimating future cash flows, and discounting them back to a present value.  The question is whether the business is genuinely undervalued or whether the statistical signal is reflecting risk the model doesn't fully capture.  Names that survive that scrutiny may become concentrated positions alongside the systematic core.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Approach -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="services__header reveal">
+                <p class="section-label">Approach</p>
+                <h2>How we work</h2>
+            </div>
+            <div class="services__grid">
+                <div class="service-card reveal">
+                    <div class="service-card__number">01</div>
+                    <h3>Fiduciary Standard</h3>
+                    <p>Stag Rock is a registered investment adviser with a fiduciary obligation to act in the best interest of every client.</p>
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Details
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>We do not sell annuities, insurance, mutual funds, limited partnerships, or other commissioned products.  Our only compensation is the advisory fee agreed upon with each client.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card__number">02</div>
+                    <h3>Independent Custody</h3>
+                    <p>Client assets are held at Charles Schwab & Co., Inc., an independent qualified custodian.</p>
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Details
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>Stag Rock is not affiliated with any broker-dealer, bank, or insurance company.  Client funds are never held by the adviser.  Schwab provides independent account statements and trade confirmations directly to clients.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card__number">03</div>
+                    <h3>Research-Driven</h3>
+                    <p>Portfolios are built on proprietary models developed and maintained in-house, not outsourced strategies or third-party products.</p>
+                    <div class="accordion">
+                        <div class="accordion__item">
+                            <button class="accordion__trigger" aria-expanded="false">
+                                Details
+                                <span class="accordion__icon"></span>
+                            </button>
+                            <div class="accordion__body">
+                                <div class="accordion__content">
+                                    <p>The equity and fixed income models are applied across client accounts so that everyone tracks together and course corrections can be made systematically.  Each household's allocation reflects its own circumstances, but the underlying research process is consistent.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiator -->
+    <section class="differentiator">
+        <div class="container">
+            <div class="differentiator__inner reveal">
+                <div class="divider" style="margin: 0 auto var(--space-md);"></div>
+                <p class="differentiator__headline">
+                    Independent and owner-operated.
+                </p>
+                <div class="differentiator__body">
+                    <p>
+                        Stag Rock is a fee-only fiduciary.  The firm's only obligation is to the clients it serves.  The models and the research process are maintained in-house, and when something changes in the market or the world, the process adapts, because that's what intellectual honesty requires.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bio -->
+    <section class="bio" id="team">
+        <div class="container container--narrow">
+            <div class="bio__content reveal">
+                <p class="section-label">Leadership</p>
+                <h2>Reed Foster, CFA, CPA</h2>
+                <p style="font-family: var(--font-body); font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-md);">Founder & Portfolio Manager</p>
+                <div class="divider"></div>
+                <p>
+                    Reed Foster founded Stag Rock in 2018 after a career that spanned naval aviation, portfolio management, and investment banking.  He spent eleven years as a naval officer and F/A-18 pilot, completing multiple deployments overseas and graduating from the Navy's Fighter Weapons School (TOPGUN) before serving as an instructor pilot.  After the Navy, he worked as a portfolio manager and later as an investment banker at Moelis & Company in New York City, giving him experience across both sides of the capital markets before setting out on his own.
+                </p>
+
+                <p>
+                    Reed is a CFA Charterholder and licensed CPA in Virginia.  He holds an MBA from the College of William & Mary, a Master of Accounting from the University of North Carolina at Chapel Hill, and a B.S. in Systems Engineering from the United States Naval Academy.
+                </p>
+                <p>
+                    He continues to fly professionally as a Boeing 777 First Officer for a major cargo carrier.  Flying globally as a cargo pilot provides a firsthand view of how goods, capital, and commerce move around the world, a perspective that informs how he thinks about markets.
+                </p>
+                <p>
+                    Reed also operates Stag Rock CPA, PLLC, which allows him to take on private business valuation work on a case-by-case basis.  These engagements draw on income-based and market-based approaches alongside precedent transaction analysis where control premiums and M&A context are relevant, and typically involve shareholder transactions, partner buyouts, or corporate planning.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact__inner">
+                <div class="contact__text reveal">
+                    <p class="section-label">Contact</p>
+                    <h2>Reach the firm</h2>
+                    <div class="divider"></div>
+                    <p>
+                        To learn more about how we manage portfolios, please reach out.
+                    </p>
+                </div>
+                <div class="contact__info reveal">
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Email</p>
+                        <p class="contact__info-value">
+                            <a href="mailto:info@stagrockllc.com">info@stagrockllc.com</a>
+                        </p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Location</p>
+                        <p class="contact__info-value">Virginia Beach, Virginia</p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Custodian</p>
+                        <p class="contact__info-value">Charles Schwab & Co., Inc.</p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Regulatory</p>
+                        <p class="contact__info-value">
+                            <a href="https://brokercheck.finra.org/" target="_blank" rel="noopener">FINRA BrokerCheck</a>
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="https://adviserinfo.sec.gov/" target="_blank" rel="noopener">Form ADV</a>
+                        </p>
+                    </div>
+                    <div class="contact__info-item">
+                        <p class="contact__info-label">Related Practice</p>
+                        <p class="contact__info-value">
+                            <a href="https://www.stagrockcpa.com" target="_blank" rel="noopener">Stag Rock CPA, PLLC</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__upper">
+                <div class="footer__brand"><img src="logo-white.png" alt="" style="height: 24px; width: auto; margin-right: 0.5rem; vertical-align: middle;">Stag Rock</div>
+                <div class="footer__links">
+                    <a href="#about">About</a>
+                    <a href="#services">Approach</a>
+                    <a href="#team">Team</a>
+                    <a href="#contact">Contact</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="email-disclaimer.html">Email Disclaimer</a>
+                </div>
+            </div>
+            <div class="footer__disclosure">
+                <p>
+                    Stag Rock LLC (CRD# 300202) is a registered investment adviser in the states of Virginia, Washington, and Texas.  Registration does not imply a certain level of skill or training.  The information provided on this website is for informational purposes only and does not constitute investment advice, a solicitation, or a recommendation to buy or sell any securities.  Past performance is not indicative of future results.  All investing involves risk, including the potential loss of principal.  Client assets are custodied at Charles Schwab & Co., Inc.  Please review our <a href="https://adviserinfo.sec.gov/" target="_blank" rel="noopener" style="color: rgba(250, 248, 245, 0.5);">Form ADV Part 2A</a> for important disclosures regarding our services, fees, and business practices.
+                </p>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Stag Rock, LLC. All rights reserved.</p>
+                <p>CRD No. 300202</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        // Mobile nav toggle
+        const toggle = document.getElementById('navToggle');
+        const links = document.getElementById('navLinks');
+        toggle.addEventListener('click', () => { links.classList.toggle('open'); });
+
+        // Close mobile nav on link click
+        links.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { links.classList.remove('open'); });
+        });
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+
+        // Tab switching
+        document.querySelectorAll('.tabs__btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tabs = this.closest('.tabs');
+                const targetId = 'tab-' + this.dataset.tab;
+
+                // Deactivate all buttons and panels
+                tabs.querySelectorAll('.tabs__btn').forEach(b => b.classList.remove('active'));
+                tabs.querySelectorAll('.tabs__panel').forEach(p => p.classList.remove('active'));
+
+                // Close any open accordions in both panels
+                tabs.querySelectorAll('.accordion__item').forEach(item => {
+                    item.classList.remove('open');
+                    item.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+                });
+
+                // Activate selected
+                this.classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Accordion toggle
+        document.querySelectorAll('.accordion__trigger').forEach(trigger => {
+            trigger.addEventListener('click', function() {
+                const item = this.closest('.accordion__item');
+                const isOpen = item.classList.contains('open');
+                const accordion = item.closest('.accordion');
+
+                // Close siblings
+                accordion.querySelectorAll('.accordion__item').forEach(sibling => {
+                    sibling.classList.remove('open');
+                    sibling.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');                });
+
+                // Toggle current
+                if (!isOpen) { item.classList.add('open'); }
+                this.setAttribute('aria-expanded', String(!isOpen));
+            });
+        });
+    </script>
+
+</body>
+</html>
